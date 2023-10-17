@@ -84,7 +84,7 @@ public class OrderController {
                 Integer.parseInt(request.getParameter("price")),
                 request.getParameter("description"));
         orderService.setOrder(order, Integer.parseInt(request.getParameter("count")));
-        return "redirect:/set";
+        return "redirect: set";
     }
 //    @GetMapping("/set")
 //    public String new_order(){

@@ -7,10 +7,13 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
+<head>
+    <title>Description</title>
+</head>
+<body>
+<p>name ${order.name}</p>
+<p>price ${order.price}</p>
+<p>description ${order.description}</p>
+<input type="button" value="Back" onclick="window.location.href = '/spr_sec/show'">
+</body>
 </html>

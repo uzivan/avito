@@ -1,0 +1,75 @@
+#version: "3.7"
+#services:
+#  db:
+#    image: mysql
+#    ports:
+#      - "3306:3306"
+#    volumes:
+#      - ./db/structure.sql:/docker-entrypoint-initdb.d/structure.sql
+#    environment:
+#      MYSQL_PASSWORD: qwertyui
+#      MYSQL_DATABASE: my_db2
+#      MYSQL_USER: root
+#    restart: always
+#    command: ["--init-file", "/docker-entrypoint-initdb.d/structure.sql"]
+#  adminer:
+#    image: adminer
+#    restart: always
+#    ports:
+#      - "8080:8080"
+services:
+  db:
+    build: ./db
+#    restart: always
+    ports:
+      - "3306:3306"
+#    volumes:
+#      - ./db/structure.sql:/docker-entrypoint-initdb.d/structure.sql
+#    environment:
+#      MYSQL_PASSWORD: qwertyui
+#      MYSQL_DATABASE: my_db2
+#      MYSQL_USER: root
+#    command: ["--init-file", "/docker-entrypoint-initdb.d/structure.sql"]
+
+  app:
+    build: ./spr_sec
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+#    environment:
+#      - SERVER_PORT= 8080
+#      - SPRING_DATASOURCE_URL=jdbc:mysql://db/my_db2
+#    environment:
+#    - DATABASE_HOST=db
+#    - DATABASE_USER=root
+#    - DATABASE_PASSWORD=qwertyui
+#    - DATABASE_NAME=my_db2
+#    - DATABASE_PORT=3306
+#      SPRING_DATASOURCE_URL: jdbc:mysql://db:5432/my_db2
+#      SPRING_DATASOURCE_USERNAME: root
+#      SPRING_DATASOURCE_PASSWORD: qwertyui
+#    environment:
+#      - SERVER_PORT=8080
+#      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql/my_db2?useSSL=false&serverTimezone=UTC
+#version: '3.7'
+#services:
+#  mysql_db_container:
+#    image: mysql:latest
+#    command: --default-authentication-plugin=mysql_native_password
+#    environment:
+#      MYSQL_ROOT_PASSWORD: qwertyui
+#    ports:
+#      - 3306:3306
+#    volumes:
+#      - ./db/structure.sql:/docker-entrypoint-initdb.d/structure.sql
+#  adminer_container:
+#    image: adminer:latest
+#    environment:
+#      ADMINER_DEFAULT_SERVER: mysql_db_container
+#    ports:
+#      - 8080:8080
+#
+#volumes:
+#  mysql_db_data_container:
